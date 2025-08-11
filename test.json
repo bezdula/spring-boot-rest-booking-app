@@ -1,0 +1,47 @@
+{
+    "content": [
+        {
+            "id": 3,
+            "unitType": "FLAT",
+            "numberOfRooms": 2,
+            "floor": 1,
+            "cost": 99.99,
+            "description": "its a flat",
+            "bookedPeriods": []
+        },
+        {
+            "id": 4,
+            "unitType": "FLAT",
+            "numberOfRooms": 2,
+            "floor": 1,
+            "cost": 99.99,
+            "description": "its a flat",
+            "bookedPeriods": []
+        }
+    ],
+    "pageable": {
+        "pageNumber": 0,
+        "pageSize": 5,
+        "sort": {
+            "empty": true,
+            "sorted": false,
+            "unsorted": true
+        },
+        "offset": 0,
+        "paged": true,
+        "unpaged": false
+    },
+    "last": true,
+    "totalElements": 2,
+    "totalPages": 1,
+    "first": true,
+    "size": 5,
+    "number": 0,
+    "sort": {
+        "empty": true,
+        "sorted": false,
+        "unsorted": true
+    },
+    "numberOfElements": 2,
+    "empty": false
+}
