@@ -2,7 +2,6 @@ package com.example.web;
 
 import com.example.model.BookedPeriod;
 import com.example.model.LivingUnit;
-import com.example.service.BookedPeriodsService;
 import com.example.service.LivingUnitsService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -28,9 +27,6 @@ public class BookingController {
 
     @Autowired
     private LivingUnitsService livingUnitsService;
-
-    @Autowired
-    private BookedPeriodsService bookedPeriodsService;
 
     @RequestMapping(value = "/create",
             method = RequestMethod.POST,

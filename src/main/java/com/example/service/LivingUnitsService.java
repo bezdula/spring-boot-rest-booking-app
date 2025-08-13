@@ -4,12 +4,14 @@ import com.example.dao.LivingUnitsRepository;
 import com.example.model.LivingUnit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.stream.Collectors;
 
 @Service
 public class LivingUnitsService {
@@ -32,9 +34,14 @@ public class LivingUnitsService {
                 .and(LivingUnitSpecifications.hasFloor(floor))
                 .and(LivingUnitSpecifications.costBetween(minCost, maxCost));
 
-        // TODO: add search by date
-
-        return livingUnitsRepository.findAll(specification, pageable);
+        return new PageImpl<>(livingUnitsRepository.findAll(specification, pageable)
+                .stream()
+                .filter(livingUnit -> livingUnit.getBookedPeriods()
+                        .stream()
+                        .allMatch(bookedPeriod ->
+                                maxDate.isBefore(bookedPeriod.getStartDate()) || maxDate.isEqual(bookedPeriod.getStartDate())
+                                        || minDate.isAfter(bookedPeriod.getEndDate()) || minDate.isEqual(bookedPeriod.getEndDate())))
+                .collect(Collectors.toList()));
     }
 
     public LivingUnit findLivingUnit(long id) {
